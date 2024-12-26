@@ -7,8 +7,10 @@ export default function loginHook() {
     try {
       const result = await login(values); 
       if(result.status === 200){
-        message.success("Login successful!");
-        navigate("/admin"); 
+        console.log(result)
+        localStorage.setItem("adminData", JSON.stringify(result.data.admin));
+        message.success(result.data.msg);
+        navigate("/"); 
       }else{
         message.error(result.response.data.msg);
         return
