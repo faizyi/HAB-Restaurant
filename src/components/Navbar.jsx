@@ -1,9 +1,12 @@
 import { MenuOutlined } from '@ant-design/icons';
 import { MenuDrawer } from './Drawer';
 import { IsAdminHook } from '../CustomHooks/IsAdminHook';
+import { AddDishModal } from '../pages/Admin/AddDishModal';
+import { AddDishHook } from '../CustomHooks/AddDishHook';
 export const Navbar = () => {
   const { isAdminLoggedIn, handleDrawerOpen, handleDrawerClose, 
   isDrawerOpen, path, navigate, handleLogout } = IsAdminHook();
+  const {isModalOpen, handleOpenModal, handleCloseModal} = AddDishHook();
   return (
     <header className="border-b sticky top-0 z-50 bg-opacity-95 backdrop-filter
      backdrop-blur-sm bg-white shadow-md">
@@ -32,10 +35,9 @@ export const Navbar = () => {
           {
             isAdminLoggedIn && (
               <button
+              onClick={handleOpenModal}
               className={`cursor-pointer text-gray-700 font-medium hover:text-yellow-500 
-              transition-all duration-300
-                hover:border-b-2 hover:border-yellow-500
-              `}
+              transition-all duration-300 hover:border-b-2 hover:border-yellow-500`}
             >
               Add Dish
             </button>
@@ -71,10 +73,13 @@ export const Navbar = () => {
 
       {/* Mobile Navigation Drawer */}
       <MenuDrawer 
+      onOpenModal={handleOpenModal}
       handleDrawerClose={handleDrawerClose} 
       isDrawerOpen={isDrawerOpen}
       path={path} 
       navigate={navigate}/>
+
+      {isModalOpen && <AddDishModal visible={isModalOpen} onClose={handleCloseModal}/>}
     </header>
   );
 };

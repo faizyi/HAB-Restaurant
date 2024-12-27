@@ -1,8 +1,7 @@
 import React from 'react';
 import { Drawer } from 'antd';
 import { IsAdminHook } from '../CustomHooks/IsAdminHook';
-
-export const MenuDrawer = ({ isDrawerOpen, handleDrawerClose, path, navigate }) => {
+export const MenuDrawer = ({ isDrawerOpen, handleDrawerClose, path, navigate, onOpenModal }) => {
   const { isAdminLoggedIn, handleLogout } = IsAdminHook();
   return (
     <Drawer
@@ -35,14 +34,13 @@ export const MenuDrawer = ({ isDrawerOpen, handleDrawerClose, path, navigate }) 
           {isAdminLoggedIn && (
             <a
               onClick={() => {
-                navigate('/admin');
+                onOpenModal();
                 handleDrawerClose();
               }}
-              className={`block text-lg font-semibold text-gray-800
-              hover:text-yellow-500 transition duration-300 ${path === '/admin' ? 'text-yellow-500' : ''
-                }`}
+              className={`block text-lg font-semibold text-gray-700
+              hover:text-yellow-500 transition duration-300 hover:text-yellow-500`}
             >
-              Admin
+              Add Dish
             </a>
           )}
           {/* Login Button */}
