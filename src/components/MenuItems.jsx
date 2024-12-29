@@ -65,9 +65,9 @@ export const MenuItems = () => {
                     <span className="text-lg font-semibold text-gray-500">
                       {`SAR ${(item.priceUSD * USD_TO_SAR).toFixed(2)}`}
                     </span>
-                    <span className="text-white px-3 py-1 rounded-full text-sm shadow-md">
+                    {/* <span className="text-white px-3 py-1 rounded-full text-sm shadow-md"> */}
                     <AdminActions index={index} />
-                    </span>
+                    {/* </span> */}
                   </div>
                 </div>
                 

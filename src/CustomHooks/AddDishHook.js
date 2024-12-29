@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { addDish } from '../services/dish';
 
 export const AddDishHook = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,18 +18,29 @@ export const AddDishHook = () => {
             setImagePreview(URL.createObjectURL(file));
         }
     }
-    const handleAddDish = ()=>{
-        if(!dishName || !dishPrice || !dishImage){
-            alert("Please fill all the fields");
-            return;
+    const handleAddDish = async ()=>{
+        // if(!dishName || !dishPrice || !dishImage){
+        //     alert("Please fill all the fields");
+        //     return;
+        // }
+        const DishData = {
+            dishName,
+            dishDisc,
+            dishPrice,
+            dishImage
         }
-        const formData = new FormData();
-        formData.append('name', dishName);
-        formData.append('description', dishDisc);
-        formData.append('price', dishPrice);
-        formData.append('image', dishImage);
-        console.log(dishImage.name);
-        }
+        const result = await addDish(DishData);
+        console.log(result)
+        // if(result.status === 200){
+        //     alert("Dish added successfully");
+        //     handleCloseModal();
+        //     setDishName("");
+        //     setDishDisc("");
+        //     setDishPrice('');
+        //     setDishImage(null);
+        //     setImagePreview('');
+        // }
+    }
   return {
     dishName,
     setDishName,
