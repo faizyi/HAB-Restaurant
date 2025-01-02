@@ -1,6 +1,6 @@
 import axios from "axios";
 export const axiosHandler = axios.create({
-    baseURL : "https://restaurant-35b6g5boo-faizyis-projects.vercel.app",
+    baseURL : "https://restaurant-d1wxtif2w-faizyis-projects.vercel.app/",
     // headers : {"Content-Type" : "application/json"},
     withCredentials : true
 })
