@@ -52,6 +52,7 @@ export const AddDishModal = ({onClose, visible}) => {
             onChange={handleImage}
             className="hidden"
             id="dish-image-upload"
+            name='dishImage'
           />
           <label htmlFor="dish-image-upload" className="text-center">
             {imagePreview ? (

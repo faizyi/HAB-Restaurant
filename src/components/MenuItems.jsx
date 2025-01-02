@@ -1,25 +1,15 @@
 import React, { useState } from 'react';
-import menuitem from "../../src/assets/Images/menu.webp";
 import { AdminActions } from './AdminActions';
-
-// Full menu data
-const menu = [
-  { name: "Truffle Infused Burger", priceUSD: 16.99, image: menuitem },
-  { name: "Wood-Fired Pizza", priceUSD: 14.99, image: menuitem },
-  { name: "Gourmet Tacos", priceUSD: 12.99, image: menuitem },
-  { name: "Pasta Alfredo", priceUSD: 13.99, image: menuitem },
-];
-
-// Conversion rate (USD to SAR)
-const USD_TO_SAR = 3.75;
+import { GetAllDishesHooks } from '../CustomHooks/GetAllDishesHooks';
 
 export const MenuItems = () => {
-    const [searchTerm, setSearchTerm] = useState("");
-  
-    // Filtered menu based on search term
-    const filteredMenu = menu.filter((item) =>
-      item.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+  const { dishes } = GetAllDishesHooks(); // Fetch all dishes
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // Filtered menu based on search term
+  const filteredMenu = dishes.filter((item) =>
+    item.dishName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <section id="menu" className="py-20 bg-gray-100">
@@ -36,41 +26,40 @@ export const MenuItems = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Search for a dish..."
-            className="px-4 py-2 w-full sm:w-1/2 border rounded-lg shadow-sm
-             focus:outline-none border-yellow-500"
+            className="px-4 py-2 w-full sm:w-1/2 border rounded-lg shadow-sm focus:outline-none 
+            border-yellow-500"
           />
         </div>
 
         {/* Menu Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <div className="grid grid-col-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           {filteredMenu.length > 0 ? (
             filteredMenu.map((item, index) => (
               <div
                 key={index}
-                className="bg-white rounded-xl shadow-lg hover:shadow-2xl
-                 overflow-hidden transform transition duration-300 hover:scale-105 relative"
+                className="bg-white rounded-xl shadow-lg hover:shadow-2xl overflow-hidden 
+                transform transition duration-300 hover:scale-105 relative"
               >
                 {/* Menu Item Image */}
                 <img
-                  src={item.image}
-                  alt={item.name}
+                  src={`http://localhost:9002/public/uploads/${item.dishImage}`} // Construct full image URL
+                  // alt={item.dishName}
                   className="w-full h-52 object-cover rounded-t-xl"
                 />
+
                 {/* Menu Item Details */}
                 <div className="p-6">
                   <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                    {item.name}
+                    {item.dishName}
                   </h3>
+                  <p className="capitalize text-gray-600 mb-4">{item.dishDisc}</p> {/* Add description */}
                   <div className="flex justify-between items-center">
                     <span className="text-lg font-semibold text-gray-500">
-                      {`SAR ${(item.priceUSD * USD_TO_SAR).toFixed(2)}`}
+                      SAR {item.dishPrice}
                     </span>
-                    {/* <span className="text-white px-3 py-1 rounded-full text-sm shadow-md"> */}
                     <AdminActions index={index} />
-                    {/* </span> */}
                   </div>
                 </div>
-                
               </div>
             ))
           ) : (

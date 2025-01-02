@@ -18,29 +18,31 @@ export const AddDishHook = () => {
             setImagePreview(URL.createObjectURL(file));
         }
     }
-    const handleAddDish = async ()=>{
-        // if(!dishName || !dishPrice || !dishImage){
-        //     alert("Please fill all the fields");
-        //     return;
-        // }
-        const DishData = {
-            dishName,
-            dishDisc,
-            dishPrice,
-            dishImage
+    const handleAddDish = async () => {
+        if (!dishName || !dishDisc || !dishPrice || !dishImage){
+            alert("Please fill all the fields");
+            return;
         }
-        const result = await addDish(DishData);
-        console.log(result)
-        // if(result.status === 200){
-        //     alert("Dish added successfully");
-        //     handleCloseModal();
-        //     setDishName("");
-        //     setDishDisc("");
-        //     setDishPrice('');
-        //     setDishImage(null);
-        //     setImagePreview('');
+    
+        const formData = new FormData();
+        formData.append("dishName", dishName);
+        formData.append("dishDisc", dishDisc);
+        formData.append("dishPrice", dishPrice);
+        formData.append("dishImage", dishImage); // This key must match 'upload.single("dishImage")'
+    
+        // Debug: Log the FormData
+        // for (let pair of formData.entries()) {
+        //     console.log(`${pair[0]}: ${pair[1]}`);
         // }
-    }
+    
+        // try {
+            const result = await addDish(formData);
+            console.log(result)
+        //     console.log("Result:", result);
+        // } catch (error) {
+        //     console.error("Error adding dish:", error);
+        // }
+    };
   return {
     dishName,
     setDishName,
