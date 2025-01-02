@@ -42,7 +42,7 @@ export const MenuItems = () => {
               >
                 {/* Menu Item Image */}
                 <img
-                  src={`http://localhost:9002/public/uploads/${item.dishImage}`} // Construct full image URL
+                  src={`https://restaurant-taupe-three.vercel.app/public/uploads/${item.dishImage}`} // Construct full image URL
                   // alt={item.dishName}
                   className="w-full h-52 object-cover rounded-t-xl"
                 />
