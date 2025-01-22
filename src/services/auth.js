@@ -1,5 +1,6 @@
 import { axiosHandler } from "../axios/axios";
 export const login = async(data)=>{
+    console.log(data)
     try {
         const res = await axiosHandler.post("/admin/login", data,{
             headers : {"Content-Type" : "application/json"},

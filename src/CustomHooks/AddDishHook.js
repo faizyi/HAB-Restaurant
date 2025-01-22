@@ -23,25 +23,18 @@ export const AddDishHook = () => {
             alert("Please fill all the fields");
             return;
         }
-    
-        const formData = new FormData();
-        formData.append("dishName", dishName);
-        formData.append("dishDisc", dishDisc);
-        formData.append("dishPrice", dishPrice);
-        formData.append("dishImage", dishImage); // This key must match 'upload.single("dishImage")'
-    
-        // Debug: Log the FormData
-        // for (let pair of formData.entries()) {
-        //     console.log(`${pair[0]}: ${pair[1]}`);
-        // }
-    
-        // try {
-            const result = await addDish(formData);
-            console.log(result)
-        //     console.log("Result:", result);
-        // } catch (error) {
-        //     console.error("Error adding dish:", error);
-        // }
+        const dishData ={
+            dishName: dishName,
+            dishDisc: dishDisc,
+            dishPrice: dishPrice,
+            dishImage: dishImage
+        }
+        try {
+            const result = await addDish(dishData);
+            console.log("Result:", result);
+        } catch (error) {
+            console.error("Error adding dish:", error);
+        }
     };
   return {
     dishName,

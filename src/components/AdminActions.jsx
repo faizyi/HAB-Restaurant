@@ -1,8 +1,11 @@
 import React from 'react'
 import { FiEdit, FiTrash } from 'react-icons/fi'
 import { IsAdminHook } from '../CustomHooks/IsAdminHook'
-export const AdminActions = () => {
+export const AdminActions = ({id}) => {
     const { isAdminLoggedIn } = IsAdminHook();
+    const handleDelete = () => {
+      console.log(id);
+    }
     return (
         <>
         {isAdminLoggedIn && (
@@ -15,7 +18,7 @@ export const AdminActions = () => {
             <FiEdit />
           </button>
           <button
-            onClick={() => handleDelete(index)}
+            onClick={handleDelete}
             className="bg-red-500 text-white p-3 rounded-full shadow hover:bg-red-600
              hover:shadow-lg transition"
           >

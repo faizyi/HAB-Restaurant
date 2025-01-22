@@ -42,14 +42,14 @@ export const MenuItems = () => {
               >
                 {/* Menu Item Image */}
                 <img
-                  src={`https://restaurant-taupe-three.vercel.app/public/uploads/${item.dishImage}`} // Construct full image URL
+                  src={`http://localhost:9002/public/uploads/${item.dishImage}`} // Construct full image URL
                   // alt={item.dishName}
                   className="w-full h-52 object-cover rounded-t-xl"
                 />
 
                 {/* Menu Item Details */}
                 <div className="p-6">
-                  <h3 className="text-2xl font-bold text-gray-800 mb-2">
+                  <h3 className="capitalize text-2xl font-bold text-gray-800 mb-2">
                     {item.dishName}
                   </h3>
                   <p className="capitalize text-gray-600 mb-4">{item.dishDisc}</p> {/* Add description */}
@@ -57,7 +57,7 @@ export const MenuItems = () => {
                     <span className="text-lg font-semibold text-gray-500">
                       SAR {item.dishPrice}
                     </span>
-                    <AdminActions index={index} />
+                    <AdminActions id={item.id} />
                   </div>
                 </div>
               </div>
