@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { addDish } from '../services/dish';
-
+import { message } from "antd";
 export const AddDishHook = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const handleOpenModal = () => setIsModalOpen(true);
@@ -31,7 +31,9 @@ export const AddDishHook = () => {
         }
         try {
             const result = await addDish(dishData);
-            console.log("Result:", result);
+            if(result.status === 201){
+                message.success(result.data.msg);
+            }
         } catch (error) {
             console.error("Error adding dish:", error);
         }
