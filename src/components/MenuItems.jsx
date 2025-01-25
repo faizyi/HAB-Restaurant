@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
 import { AdminActions } from './AdminActions';
 import { GetAllDishesHooks } from '../CustomHooks/GetAllDishesHooks';
+import { AddDishHook } from '../CustomHooks/AddDishHook';
 
 export const MenuItems = () => {
-  const { dishes } = GetAllDishesHooks(); // Fetch all dishes
+  const { dishes, setDishes } = GetAllDishesHooks(); // Fetch all dishes
   const [searchTerm, setSearchTerm] = useState("");
+
+  // const addDishToState = (newDish)=>{
+  //   setDishes((prevDishes)=> [newDish, ...prevDishes])
+  // }
+  // AddDishHook(addDishToState)
 
   // Filtered menu based on search term
   const filteredMenu = dishes.filter((item) =>
@@ -42,7 +48,7 @@ export const MenuItems = () => {
               >
                 {/* Menu Item Image */}
                 <img
-                  src={`http://localhost:9002/public/uploads/${item.dishImage}`} // Construct full image URL
+                  src={`${item.dishImage}`} // Construct full image URL
                   // alt={item.dishName}
                   className="w-full h-52 object-cover rounded-t-xl"
                 />

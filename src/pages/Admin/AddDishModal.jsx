@@ -5,7 +5,7 @@ import { AddDishHook } from '../../CustomHooks/AddDishHook'
 
 export const AddDishModal = ({onClose, visible}) => {
     const {dishName, setDishName, dishDisc, setDishDisc, dishPrice, setDishPrice, imagePreview,
-    handleImage, handleAddDish} = AddDishHook();
+    handleImage, handleAddDish} = AddDishHook(onClose);
   return (
     <Modal
     visible={visible}

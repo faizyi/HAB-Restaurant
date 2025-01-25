@@ -18,6 +18,7 @@ export const GetAllDishesHooks = () => {
         fetchDishes();
     },[])
   return  {
-      dishes
+      dishes,
+      setDishes
   }
 }
